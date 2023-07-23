@@ -25,7 +25,7 @@ def extract_entries_and_spans(index_title, start, end, ignore_sections) -> Tuple
     section_spans = {}
     for page_number in range(start, end + 1):
         page = pwb.Page(site, f"Page:{index_title}/{page_number}")
-        for section_name in re.findall(r'<section begin="(.+)"', page.text):
+        for section_name in re.findall(r'<section begin="([^"]+)"', page.text):
             if ignore_sections(section_name):
                 continue
             if section_name not in entries:
